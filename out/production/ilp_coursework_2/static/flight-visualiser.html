@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Drone Flight Visualiser</title>
+    <!--This is my personal style sheet for how the webpage looks -->
+    <link rel="stylesheet" href="visualiser.css" />
+
+    <!--This is taken off the leaflet website, the first is for the styling of the map and
+    the js is for the map library-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+</head>
+<body>
+<div id="container">
+<div id="controls">
+<h1>Drone Flight Visualiser</h1>
+<p>Put your JSON medicine dispatch record in the text box below and press "Calculate" start!</p>
+    <!--This is for the textbox, users put their json input here. For demonstration purposes, I've autofilled
+    this area with a valid JSON request.-->
+    <textarea id="dispatch-input">
+        [
+    {
+      "id": 1,
+      "requirements": {
+        "capacity": 0.5,
+        "cooling": true
+      },
+      "delivery": {
+        "lng": -3.1932316193525025,
+        "lat":  55.94232970358968
+      }
+    },
+    {
+      "id": 2,
+      "requirements": {
+        "capacity": 0.5
+      },
+      "delivery": {
+        "lng": -3.1850733523954773,
+        "lat":  55.949416833789854
+      }
+    }
+  ]
+    </textarea>
+<br><br>
+<button id="calculate-button">Calculate</button>
+    <!--This section prints the output given by the request, without formatting,
+    and alerts screen readers of an update-->
+<pre id="result"  aria-live="polite"></pre>
+</div>
+
+    <div id="map"></div>
+</div>
+<!--This is my javascript file-->
+<script src="visualiser.js"></script>
+</body>
+</html>
