@@ -107,8 +107,5 @@ public class FindPathSafetyTest {
         assertNotNull(path);
         assertFalse(path.isEmpty());
         assertSafe(path, areas);
-
     }
-
-
 }
