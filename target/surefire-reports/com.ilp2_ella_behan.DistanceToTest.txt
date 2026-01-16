@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.ilp2_ella_behan.DistanceToTest
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.055 s -- in com.ilp2_ella_behan.DistanceToTest
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.088 s -- in com.ilp2_ella_behan.DistanceToTest

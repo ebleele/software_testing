@@ -25,14 +25,14 @@ public class DroneCapability {
     public Boolean getCooling(){
         return cooling;
     }
-    public void setCooling() {
-        this.cooling = cooling;
+    public void setCooling(boolean cooling) {
+        this.cooling = this.cooling;
     }
     public Boolean getHeating(){
         return heating;
     }
-    public void setHeating() {
-        this.heating = heating;
+    public void setHeating(boolean heating) {
+        this.heating = this.heating;
     }
     public Double getCapacity(){
         return capacity;
@@ -43,25 +43,25 @@ public class DroneCapability {
     public Integer getMaxMoves(){
         return maxMoves;
     }
-    public void setMaxMoves() {
+    public void setMaxMoves(int i) {
         this.maxMoves = maxMoves;
     }
     public Double getCostPerMove(){
         return costPerMove;
     }
-    public void setCostPerMove() {
+    public void setCostPerMove(double v) {
         this.costPerMove = costPerMove;
     }
     public Double getCostInitial(){
         return costInitial;
     }
-    public void setCostInitial() {
+    public void setCostInitial(double v) {
         this.costInitial = costInitial;
     }
     public Double getCostFinal(){
         return costFinal;
     }
-    public void setCostFinal() {
+    public void setCostFinal(double v) {
         this.costFinal = costFinal;
     }
 

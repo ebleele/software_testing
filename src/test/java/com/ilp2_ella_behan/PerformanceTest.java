@@ -15,6 +15,8 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -42,7 +44,7 @@ public class PerformanceTest {
     }
 
     @Test
-    void calcDeliveryPath_In30Seconds() {
+    void calcDeliveryPath3Case_In30Seconds() {
         when(restTemplate.getForObject(eq("http://test-ilp/restricted-areas"), eq(RestrictedArea[].class)))
                 .thenReturn((new RestrictedArea[]{squareRestrictedArea(55.9450,-3.1880,0.00025)}));
 
@@ -53,7 +55,7 @@ public class PerformanceTest {
                 .thenReturn(new DroneForServicePoint[]{mapping(1, "D1", "D2")});
 
         when(restTemplate.getForObject(eq("http://test-ilp/service-points"), eq(ServicePoint[].class)))
-                .thenReturn(new ServicePoint[]{servicePoint(1, 22.9445, -31885)});
+                .thenReturn(new ServicePoint[]{servicePoint(1, 55.9445, -3.1885)});
 
         when(restTemplate.postForObject(anyString(), any(), eq(String[].class)))
                 .thenReturn(new String[]{"D1", "D2"});
@@ -63,6 +65,45 @@ public class PerformanceTest {
                 dispatch(2, 55.9450, -3.1875, reqCooling()),
                 dispatch(3, 55.9460, -3.1885, reqCooling())
         );
+
+        assertTimeoutPreemptively(Duration.ofSeconds(30), () -> {
+            service.calcDeliveryPath(dispatches);
+        });
+    }
+
+    @Test
+    void calcDeliveryPath50Case_30Seconds() {
+        when(restTemplate.getForObject(eq("http://test-ilp/restricted-areas"), eq(RestrictedArea[].class)))
+                .thenReturn((new RestrictedArea[]{squareRestrictedArea(55.9450,-3.1880,0.00025)}));
+
+        when(restTemplate.getForObject(eq("http://test-ilp/drones"), eq(Drone[].class)))
+                .thenReturn(new Drone[]{drone("D1", true, false), drone("D2", false, true)});
+
+        when(restTemplate.getForObject(eq("http://test-ilp/drones-for-service-points"), eq(DroneForServicePoint[].class)))
+                .thenReturn(new DroneForServicePoint[]{mapping(1, "D1", "D2")});
+
+        when(restTemplate.getForObject(eq("http://test-ilp/service-points"), eq(ServicePoint[].class)))
+                .thenReturn(new ServicePoint[]{servicePoint(1, 55.9445, -3.1885)});
+
+        when(restTemplate.postForObject(anyString(), any(), eq(String[].class)))
+                .thenReturn(new String[]{"D1", "D2"});
+
+        List<MedDispatchRec> dispatches = IntStream.rangeClosed(1, 50)
+                        .mapToObj(i-> {
+                        double lat = 55.9440 + (i * 0.00005);
+                        double lng = -3.1880 + (i * 0.00005);
+
+                        Requirements req;
+                        if (1 % 3 == 0) {
+                            req = reqCooling();
+                        } else if (i % 3 == 1) {
+                            req = reqHeating();
+                        } else {
+                            req = reqNone();
+                        }
+
+                        return dispatch(i, lat, lng,req);
+                        }).collect(Collectors.toList());
 
         assertTimeoutPreemptively(Duration.ofSeconds(30), () -> {
             service.calcDeliveryPath(dispatches);
