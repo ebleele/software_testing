@@ -21,7 +21,7 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
-
+//intellij doesnt like this for some reason, cant find it, but maven can do it just fine
 @SpringBootTest( classes = {IlpDroneService.class, com.ilp2_ella_behan.PerformanceTest.TestBeans.class})
 public class PerformanceTest {
     @Autowired
@@ -44,7 +44,7 @@ public class PerformanceTest {
     }
 
     @Test
-    void calcDeliveryPath3Case_In30Seconds() {
+    void calcDeliveryPathSmall_In30Seconds() {
         when(restTemplate.getForObject(eq("http://test-ilp/restricted-areas"), eq(RestrictedArea[].class)))
                 .thenReturn((new RestrictedArea[]{squareRestrictedArea(55.9450,-3.1880,0.00025)}));
 
@@ -72,9 +72,9 @@ public class PerformanceTest {
     }
 
     @Test
-    void calcDeliveryPath50Case_30Seconds() {
+    void calcDeliveryPathLarger_30Seconds() {
         when(restTemplate.getForObject(eq("http://test-ilp/restricted-areas"), eq(RestrictedArea[].class)))
-                .thenReturn((new RestrictedArea[]{squareRestrictedArea(55.9450,-3.1880,0.00025)}));
+                .thenReturn((new RestrictedArea[]{TestData.squareRestrictedArea(55.9450,-3.1880,0.00025)}));
 
         when(restTemplate.getForObject(eq("http://test-ilp/drones"), eq(Drone[].class)))
                 .thenReturn(new Drone[]{drone("D1", true, false), drone("D2", false, true)});
@@ -108,18 +108,6 @@ public class PerformanceTest {
         assertTimeoutPreemptively(Duration.ofSeconds(30), () -> {
             service.calcDeliveryPath(dispatches);
         });
-    }
-
-    private static RestrictedArea squareRestrictedArea(double lat, double lng, double half) {
-        RestrictedArea ra = new RestrictedArea();
-        ra.setVertices(List.of(
-                new Position(lat - half, lng - half),
-                new Position(lat - half, lng + half),
-                new Position(lat + half, lng + half),
-                new Position(lat + half, lng - half),
-                new Position(lat - half, lng - half)
-        ));
-        return ra;
     }
 
     private static Drone drone(String id, boolean cooling, boolean heating) {

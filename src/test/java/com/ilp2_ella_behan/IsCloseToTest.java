@@ -25,6 +25,29 @@ class IsCloseToTest {
     private int port;
 
     private final TestRestTemplate restTemplate = new TestRestTemplate();
+
+    @Test
+    void isCloseTo_justUnderThreshold() {
+        DistanceToRequest request = new DistanceToRequest();
+        request.setPosition1(new Position(0.0, 0.0));
+        request.setPosition2(new Position(0.0, 0.000149));
+        var response = restTemplate.postForEntity("http://localhost:" + port + "/api/v1/isCloseTo",
+                request,
+                Boolean.class);
+        assertEquals(true, response.getBody());
+
+    }
+    @Test
+    void isCloseTo_atThreshold() {
+        DistanceToRequest request = new DistanceToRequest();
+        request.setPosition1(new Position(0.0, 0.0));
+        request.setPosition2(new Position(0.0, 0.000150));
+        var response = restTemplate.postForEntity("http://localhost:" + port + "/api/v1/isCloseTo",
+                request,
+                Boolean.class);
+        assertEquals(false, response.getBody());
+
+    }
     @Test
     void isCloseTo_output_correct() {
         DistanceToRequest request = new DistanceToRequest();

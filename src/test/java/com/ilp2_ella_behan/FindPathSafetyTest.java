@@ -37,18 +37,6 @@ public class FindPathSafetyTest {
         }
     }
 
-    private static RestrictedArea squareArea(double lat, double lng, double half) {
-        RestrictedArea ra = new RestrictedArea();
-        ra.setVertices(List.of(
-                new Position(lat - half, lng - half),
-                new Position(lat - half, lng + half),
-                new Position(lat + half, lng + half),
-                new Position(lat + half, lng - half),
-                new Position(lat - half, lng - half)
-        ));
-        return ra;
-    }
-
     private static void assertSafe(List<Position> path, List<RestrictedArea> areas){
         assertNotNull(path);
         assertFalse(path.isEmpty());
@@ -63,7 +51,7 @@ public class FindPathSafetyTest {
             for (int i = 0; i + 1 < path.size(); i++) {
                 Position a = path.get(i);
                 Position b = path.get(i+1);
-                assertFalse(Geometry.pathCrossesRegion(a, b, poly));
+                assertFalse(Geometry.pathCrossesRegion(a, b, poly));//CHANGED MESSD UP
             }
         }
     }
@@ -85,7 +73,7 @@ public class FindPathSafetyTest {
         Position start = new Position(55.944000,-3.188000);
         Position target = new Position(55.946000, - 3.188000);
 
-        RestrictedArea block = squareArea(5.945000, -3.188000, 0.00025);
+        RestrictedArea block = TestData.squareRestrictedArea(5.945000, -3.188000, 0.00025);
         List<RestrictedArea> areas = List.of(block);
 
         List<Position> path = service.findPath(start, target, areas);
@@ -96,7 +84,7 @@ public class FindPathSafetyTest {
 
     @Test
     void findPath_startInRestrictedArea_safe() {
-        RestrictedArea block = squareArea(5.945000, -3.188000, 0.00025);
+        RestrictedArea block = TestData.squareRestrictedArea(5.945000, -3.188000, 0.00025);
         List<RestrictedArea> areas = List.of(block);
 
         Position start = new Position(55.945000,-3.188000);
