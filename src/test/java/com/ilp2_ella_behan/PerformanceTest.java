@@ -46,7 +46,7 @@ public class PerformanceTest {
     @Test
     void calcDeliveryPathSmall_In30Seconds() {
         when(restTemplate.getForObject(eq("http://test-ilp/restricted-areas"), eq(RestrictedArea[].class)))
-                .thenReturn((new RestrictedArea[]{squareRestrictedArea(55.9450,-3.1880,0.00025)}));
+                .thenReturn(new RestrictedArea[]{TestData.squareRestrictedArea(55.9450,-3.1880,0.00025)});
 
         when(restTemplate.getForObject(eq("http://test-ilp/drones"), eq(Drone[].class)))
                 .thenReturn(new Drone[]{drone("D1", true, false), drone("D2", false, true)});
@@ -94,7 +94,7 @@ public class PerformanceTest {
                         double lng = -3.1880 + (i * 0.00005);
 
                         Requirements req;
-                        if (1 % 3 == 0) {
+                        if (i % 3 == 0) {
                             req = reqCooling();
                         } else if (i % 3 == 1) {
                             req = reqHeating();

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.ilp2_ella_behan.NextPositionTest" time="0.131" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.ilp2_ella_behan.AngleValidationTest" time="0.158" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -57,7 +57,7 @@
     <property name="PID" value="33800"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
-    <property name="catalina.base" value="C:\Users\ellam\AppData\Local\Temp\tomcat.0.1032384037331782525"/>
+    <property name="catalina.base" value="C:\Users\ellam\AppData\Local\Temp\tomcat.0.6514466649089428502"/>
     <property name="native.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jdk-21\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\Users\ellam\AppData\Local\Microsoft\WindowsApps;C:\ghcup\bin;C:\Users\ellam\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ellam\AppData\Local\GitHubDesktop\bin;;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
@@ -68,19 +68,10 @@
     <property name="java.class.version" value="65.0"/>
     <property name="LOGGED_APPLICATION_NAME" value="[ilp2_ella_behan] "/>
   </properties>
-  <testcase name="nextPosition_statusCode_missingAngle" classname="com.ilp2_ella_behan.NextPositionTest" time="0.011">
-    <system-out><![CDATA[2026-01-20T00:15:59.133Z  INFO 33800 --- [ilp2_ella_behan] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.ilp2_ella_behan.NextPositionTest]: NextPositionTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2026-01-20T00:15:59.136Z  INFO 33800 --- [ilp2_ella_behan] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.ilp2_ella_behan.Ilp2EllaBehanApplication for test class com.ilp2_ella_behan.NextPositionTest
+  <testcase name="anglesAllowed" classname="com.ilp2_ella_behan.AngleValidationTest" time="0.116">
+    <system-out><![CDATA[2026-01-20T00:15:57.337Z  INFO 33800 --- [ilp2_ella_behan] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.ilp2_ella_behan.AngleValidationTest]: AngleValidationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-01-20T00:15:57.339Z  INFO 33800 --- [ilp2_ella_behan] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.ilp2_ella_behan.Ilp2EllaBehanApplication for test class com.ilp2_ella_behan.AngleValidationTest
 ]]></system-out>
   </testcase>
-  <testcase name="nextPosition_statusCode_missingStart" classname="com.ilp2_ella_behan.NextPositionTest" time="0.009"/>
-  <testcase name="nextPosition_statusCode_badSyntax" classname="com.ilp2_ella_behan.NextPositionTest" time="0.004">
-    <system-out><![CDATA[2026-01-20T00:15:59.176Z  WARN 33800 --- [ilp2_ella_behan] [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected end-of-input: expected close marker for Object (start marker at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 1, column: 1])]
-]]></system-out>
-  </testcase>
-  <testcase name="nextPosition_statusCode_correctSyntax" classname="com.ilp2_ella_behan.NextPositionTest" time="0.004"/>
-  <testcase name="nextPosition_output_correct" classname="com.ilp2_ella_behan.NextPositionTest" time="0.008"/>
-  <testcase name="nextPosition_output_correctSyntax" classname="com.ilp2_ella_behan.NextPositionTest" time="0.038"/>
-  <testcase name="nextPosition_statusCode_correct" classname="com.ilp2_ella_behan.NextPositionTest" time="0.008"/>
-  <testcase name="nextPosition_statusCode_nullRequest" classname="com.ilp2_ella_behan.NextPositionTest" time="0.008"/>
+  <testcase name="angleNotAllowed" classname="com.ilp2_ella_behan.AngleValidationTest" time="0.018"/>
 </testsuite>

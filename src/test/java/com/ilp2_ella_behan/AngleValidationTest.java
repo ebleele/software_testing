@@ -1,3 +1,5 @@
+package com.ilp2_ella_behan;
+
 import com.ilp2_ella_behan.data.NextPositionRequest;
 import com.ilp2_ella_behan.data.Position;
 import org.junit.jupiter.api.Test;
@@ -5,6 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class AngleValidationTest {

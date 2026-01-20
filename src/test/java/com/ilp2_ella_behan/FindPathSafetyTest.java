@@ -73,7 +73,7 @@ public class FindPathSafetyTest {
         Position start = new Position(55.944000,-3.188000);
         Position target = new Position(55.946000, - 3.188000);
 
-        RestrictedArea block = TestData.squareRestrictedArea(5.945000, -3.188000, 0.00025);
+        RestrictedArea block = TestData.squareRestrictedArea(55.945000, -3.188000, 0.00025);
         List<RestrictedArea> areas = List.of(block);
 
         List<Position> path = service.findPath(start, target, areas);
