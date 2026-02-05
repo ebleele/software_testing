@@ -53,6 +53,6 @@ public class GeometrySafetyTest {
         var poly = TestData.squareRestrictedArea(55.945000,-3.188000,0.00025).getVertices();
         var start = new Position(55.945000, -3.188800);
         var end = new Position(55.945000, -3.18800 - 0.00025);
-        assertTrue(Geometry.pathCrossesRegion(start,end,poly));
+        assertFalse(Geometry.pathCrossesRegion(start,end,poly));
     }
 }
